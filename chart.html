@@ -1,0 +1,9 @@
+<div class="inner-section">
+    <highchart chart='{{renderChart}}'></highchart>
+    <ul style="width:300px">
+        {{myData}}
+        <li ng-repeat="item in myData">
+            <span>{{item.zoneId}}</span>
+        </li>
+    </ul>
+</div>
