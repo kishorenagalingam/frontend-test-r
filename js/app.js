@@ -11,7 +11,7 @@ app.config(function($routeProvider) {
             templateUrl: "news.html"
         })
         .when("/blue", {
-            templateUrl: "blue.htm"
+            templateUrl: "blue.html"
         });
 });
 
@@ -39,6 +39,34 @@ app.directive('highchart', function() {
 
 
 app.controller('classCtrl', function($scope, $http, $timeout) {
+
+    $scope.menuItems = [{
+            "isNavItem": true,
+            "href": "#!chart",
+            "text": "Analytics",
+            "logoLocation": "../assets/analityc.png"
+        },
+        {
+            "isNavItem": true,
+            "href": "#!news",
+            "text": "News",
+            "logoLocation": "../assets/newspaper-o.png"
+        },
+        {
+            "isNavItem": true,
+            "href": "#!news",
+            "text": "Board Brief",
+            "logoLocation": "../assets/board-brief.png"
+        },
+        {
+            "isNavItem": true,
+            "href": "#!news",
+            "text": "Briefcase",
+            "logoLocation": "../assets/briefcase.png"
+        }
+    ];
+
+
     $scope.isActive = true;
     $scope.activeButton = function() {
         $scope.isActive = !$scope.isActive;
@@ -49,32 +77,49 @@ app.controller('classCtrl', function($scope, $http, $timeout) {
         console.log($scope.myData);
     });
 
-    /*  $http.get('data.json').then(function(data, status) {
 
-         $scope.jsondatafeed = data.yData;
-         $scope.PlotData = [];
-         $scope.Plotcat = [];
-         for (var key in $scope.jsondatafeed) {
-             console.log($scope.jsondatafeed[key]); // the whole array (index)
-             $scope.PlotData.push($scope.jsondatafeed[key]);
-             //var category = data[key][].splice(1, 1);
-             var category = $scope.jsondatafeed[key];
-             $scope.Plotcat.push(category.name);
-         }
-
-         $scope.renderChart = {
-             chart: {
-                 type: 'bar'
-             },
-
-             series: $scope.PlotData,
-
-
-             legend: {
-                 enabled: false
+    $http.get("activity-data.json")
+        .then(function(response) {
+            $scope.myWelcome = response.data;
+        });
+    /*  var ctx = document.getElementById("myChart");
+     var myChart = new Chart(ctx, {
+         type: 'line',
+         data: {
+             labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+             datasets: [{
+                 label: '# of Votes',
+                 data: [12, 19, 3, 5, 2, 3],
+                 backgroundColor: [
+                     'rgba(255, 99, 132, 0.2)',
+                     'rgba(54, 162, 235, 0.2)',
+                     'rgba(255, 206, 86, 0.2)',
+                     'rgba(75, 192, 192, 0.2)',
+                     'rgba(153, 102, 255, 0.2)',
+                     'rgba(255, 159, 64, 0.2)'
+                 ],
+                 borderColor: [
+                     'rgba(255,99,132,1)',
+                     'rgba(54, 162, 235, 1)',
+                     'rgba(255, 206, 86, 1)',
+                     'rgba(75, 192, 192, 1)',
+                     'rgba(153, 102, 255, 1)',
+                     'rgba(255, 159, 64, 1)'
+                 ],
+                 borderWidth: 1
+             }]
+         },
+         options: {
+             scales: {
+                 yAxes: [{
+                     ticks: {
+                         beginAtZero: true
+                     }
+                 }]
              }
-         };
-     }).error("error message");
-     $timeout($scope.fetch, 1000); */
+         }
+     }); */
+
+
 
 });
