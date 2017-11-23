@@ -68,9 +68,13 @@ app.controller('classCtrl', function($scope, $http, $timeout) {
 
 
 
-app.controller('LineController', function($scope) {
+app.controller('LineController', function($scope, $interval) {
+    $interval(function() {
+        $scope.labels.push(Math.random() * 10);
+    });
     $scope.chartData = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+
+        labels: [1, 2, 3, 4, 5],
         datasets: [{
             label: "My First Dataset",
             fill: false,
@@ -90,55 +94,197 @@ app.controller('LineController', function($scope) {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40],
-            spanGaps: false,
-        }, {
-            label: "",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,150,192,0.4)",
-            borderColor: "rgba(75,120,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(10,250,165,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(55,100,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [12, 50, 65, 15, 75, 95, 50],
-            spanGaps: false,
-        }, {
-            label: "",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(70,150,192,0.4)",
-            borderColor: "rgba(75,120,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(10,120,145,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(55,100,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [20, 35, 65, 45, 88, 72, 20],
+            data: [1, 80, 65, 5, 55],
             spanGaps: false,
         }]
     };
-    $scope.chartOptions = {};
+    $scope.chartOptions = {
+        scaleShowVerticalLines: false,
+        maintainAspectRatio: false,
+        legend: {
+            display: true,
+            position: 'right'
+
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                gridLines: { display: false },
+                scaleLabel: {
+
+                    display: true,
+                    labelString: 'as'
+                },
+                time: {
+                    unit: 'minute'
+                }
+
+            }],
+            yAxes: [{
+
+                display: true,
+                scaleLabel: {
+
+                    display: true,
+                    labelString: 'da',
+
+                },
+                ticks: {
+                    max: 100,
+                    min: 0,
+                    stepSize: 50,
+                    callback: function(value, index, values) {
+                        return value + 'km';
+                    }
+                }
+            }]
+        },
+        title: {
+            display: true,
+            text: 'Chart.js Line Chart - Legend'
+        }
+    };
 
     $scope.onChartClick = function(event) {
         console.log('LineController', 'onChartClick', event);
     };
+});
+
+
+
+
+app.controller('newsController', function($scope) {
+    $scope.newsItem = [{
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }
+
+    ];
+
+
+
+
 });

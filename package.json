@@ -23,8 +23,10 @@
   "homepage": "https://github.com/kishorenagalingam/frontend-test-r#readme",
   "dependencies": {
     "angular-chart.js": "^1.1.1",
+    "angular-masonry": "^0.17.0",
     "angular-route": "^1.6.6",
     "chart.js": "^2.7.1",
+    "highcharts": "^6.0.3",
     "less": "^2.7.3",
     "tc-angular-chartjs": "^2.1.4"
   },
