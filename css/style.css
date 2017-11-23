@@ -146,7 +146,6 @@ body {
 }
 .list-box {
   width: 100%;
-  max-width: 320px;
   border-radius: 6px;
   margin-bottom: 30px;
   background-color: #fff;

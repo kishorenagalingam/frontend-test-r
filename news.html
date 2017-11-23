@@ -1,6 +1,6 @@
 <div class="inner-section" ng-controller="newsController">
-    <div class="list-wrap">
-        <div class="list-box" ng-repeat="item in newsItem" masonryBrick>
+    <div class="list-wrap" masonry="">
+        <div class="list-box grid" ng-repeat="item in newsItem">
             <header class="clearfix">
                 <span class="title">{{item.title}}</span>
                 <span class="date">{{item.date}}</span>

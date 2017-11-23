@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ['ngRoute', 'chart.js', 'tc.chartjs']);
+var app = angular.module("myApp", ['ngRoute', 'chart.js', 'tc.chartjs', 'wu.masonry']);
 //var chart = angular.module("myApp", ['highcharts-ng']);
 app.config(function($routeProvider) {
     $routeProvider
@@ -68,10 +68,8 @@ app.controller('classCtrl', function($scope, $http, $timeout) {
 
 
 
-app.controller('LineController', function($scope, $interval) {
-    $interval(function() {
-        $scope.labels.push(Math.random() * 10);
-    });
+app.controller('LineController', function($scope) {
+
     $scope.chartData = {
 
         labels: [1, 2, 3, 4, 5],
@@ -159,6 +157,90 @@ app.controller('newsController', function($scope) {
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
             "newsImg": "../assets/list-box-im1.png",
+
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
+            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
+            "thumbs": "132"
+        }, {
+            "title": "Chain Store Age",
+            "date": "Feb 22, 2016",
+            "caption": "Billabong taps NetSuite to power omnichannel strategy",
+            "newsImg": "../assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
@@ -166,83 +248,6 @@ app.controller('newsController', function($scope) {
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
 
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
-            "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
-            "thumbs": "132"
-        }, {
-            "title": "Chain Store Age",
-            "date": "Feb 22, 2016",
-            "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
