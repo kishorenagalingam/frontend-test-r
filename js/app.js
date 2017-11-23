@@ -1,8 +1,9 @@
-var app = angular.module("myApp", ["ngRoute"]);
+var app = angular.module("myApp", ['ngRoute', 'chart.js', 'tc.chartjs']);
+//var chart = angular.module("myApp", ['highcharts-ng']);
 app.config(function($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "news.html"
+            templateUrl: "chart.html"
         })
         .when("/chart", {
             templateUrl: "chart.html"
@@ -15,51 +16,23 @@ app.config(function($routeProvider) {
         });
 });
 
-
-app.directive('highchart', function() {
-    return {
-        restrict: 'E',
-        template: '<div></div>',
-        replace: true,
-
-        link: function(scope, element, attrs) {
-
-            scope.$watch(function() { return attrs.chart; }, function() {
-
-                if (!attrs.chart) return;
-
-                var charts = JSON.parse(attrs.chart);
-
-                $(element[0]).highcharts(charts);
-
-            });
-        }
-    };
-});
-
-
 app.controller('classCtrl', function($scope, $http, $timeout) {
-
     $scope.menuItems = [{
-            "isNavItem": true,
             "href": "#!chart",
             "text": "Analytics",
             "logoLocation": "../assets/analityc.png"
         },
         {
-            "isNavItem": true,
             "href": "#!news",
             "text": "News",
             "logoLocation": "../assets/newspaper-o.png"
         },
         {
-            "isNavItem": true,
             "href": "#!news",
             "text": "Board Brief",
             "logoLocation": "../assets/board-brief.png"
         },
         {
-            "isNavItem": true,
             "href": "#!news",
             "text": "Briefcase",
             "logoLocation": "../assets/briefcase.png"
@@ -67,6 +40,14 @@ app.controller('classCtrl', function($scope, $http, $timeout) {
     ];
 
 
+    // current menu active class
+
+    $scope.activeMenu = $scope.menuItems[0];
+    $scope.setActive = function(menuItem) {
+        $scope.activeMenu = menuItem;
+    };
+
+    // side bar collapse
     $scope.isActive = true;
     $scope.activeButton = function() {
         $scope.isActive = !$scope.isActive;
@@ -78,48 +59,86 @@ app.controller('classCtrl', function($scope, $http, $timeout) {
     });
 
 
-    $http.get("activity-data.json")
-        .then(function(response) {
-            $scope.myWelcome = response.data;
-        });
-    /*  var ctx = document.getElementById("myChart");
-     var myChart = new Chart(ctx, {
-         type: 'line',
-         data: {
-             labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-             datasets: [{
-                 label: '# of Votes',
-                 data: [12, 19, 3, 5, 2, 3],
-                 backgroundColor: [
-                     'rgba(255, 99, 132, 0.2)',
-                     'rgba(54, 162, 235, 0.2)',
-                     'rgba(255, 206, 86, 0.2)',
-                     'rgba(75, 192, 192, 0.2)',
-                     'rgba(153, 102, 255, 0.2)',
-                     'rgba(255, 159, 64, 0.2)'
-                 ],
-                 borderColor: [
-                     'rgba(255,99,132,1)',
-                     'rgba(54, 162, 235, 1)',
-                     'rgba(255, 206, 86, 1)',
-                     'rgba(75, 192, 192, 1)',
-                     'rgba(153, 102, 255, 1)',
-                     'rgba(255, 159, 64, 1)'
-                 ],
-                 borderWidth: 1
-             }]
-         },
-         options: {
-             scales: {
-                 yAxes: [{
-                     ticks: {
-                         beginAtZero: true
-                     }
-                 }]
-             }
-         }
-     }); */
 
 
 
+
+});
+
+
+
+
+app.controller('LineController', function($scope) {
+    $scope.chartData = {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [{
+            label: "My First Dataset",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [65, 59, 80, 81, 56, 55, 40],
+            spanGaps: false,
+        }, {
+            label: "",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,150,192,0.4)",
+            borderColor: "rgba(75,120,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(10,250,165,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(55,100,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [12, 50, 65, 15, 75, 95, 50],
+            spanGaps: false,
+        }, {
+            label: "",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(70,150,192,0.4)",
+            borderColor: "rgba(75,120,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(10,120,145,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(55,100,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [20, 35, 65, 45, 88, 72, 20],
+            spanGaps: false,
+        }]
+    };
+    $scope.chartOptions = {};
+
+    $scope.onChartClick = function(event) {
+        console.log('LineController', 'onChartClick', event);
+    };
 });

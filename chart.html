@@ -1,9 +1,27 @@
 <div class="inner-section">
-    <canvas id="myChart" width="100%" height="400"></canvas>
+
+
+    <highchart chart='{{renderChart}}'></highchart>
     <ul style="width:300px">
-        {{myData}}
+        {{myWelcome}}
         <li ng-repeat="item in myData">
             <span>{{item.zoneId}}</span>
         </li>
     </ul>
+</div>
+
+
+<canvas tc-chartjs-bar chart-data="data" chart-options="options" width="350" height="200">
+</canvas>
+
+<div class="row" ng-controller="LineController">
+    <div class="col-md-12">
+        <h2>Line Chart</h2>
+    </div>
+    <div class="col-md-8">
+        <canvas tc-chartjs-line chart-data="chartData" chart-options="chartOptions" chart-click="onChartClick(event)" chart-legend="lineChart"></canvas>
+    </div>
+    <div class="col-md-4">
+        <div tc-chartjs-legend chart-legend="lineChart" class="tc-chart-js-legend"></div>
+    </div>
 </div>
