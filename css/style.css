@@ -221,6 +221,17 @@ body {
     width: 100%;
   }
 }
+@media screen and (min-width: 992px) {
+  .as > div {
+    float: left;
+  }
+  .width-70 {
+    width: 75%;
+  }
+  .width-20 {
+    width: 20%;
+  }
+}
 @media (min-width: 768px) {
   .menu-active .list-wrap {
     -webkit-column-count: 2;

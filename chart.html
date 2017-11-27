@@ -1,11 +1,13 @@
-<div class="row" ng-controller="LineController">
-    <div class="col-md-12">
-        <h2>Line Chart</h2>
+<div ng-controller="myController" class="inner-section">
+    <hc-line-chart options="chartOptions">Placeholder for generic chart</hc-line-chart>
+
+
+    <div class="as">
+        <div class="width-70">
+            <hc-column-chart>Placeholder for generic chart</hc-column-chart>
+        </div>
+        <div class="width-20">
+            <hc-pie-chart title="Speed Average" data="pieData">Placeholder for pie chart</hc-pie-chart>
+        </div>
     </div>
-    <div class="col-md-8">
-        <canvas tc-chartjs-line chart-data="chartData" chart-options="chartOptions" chart-click="onChartClick(event)" chart-legend="lineChart"></canvas>
-    </div>
-    <!--     <div class="col-md-4">
-        <div tc-chartjs-legend chart-legend="lineChart" class="tc-chart-js-legend"></div>
-    </div> -->
 </div>

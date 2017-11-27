@@ -16,26 +16,214 @@ app.config(function($routeProvider) {
         });
 });
 
+
+
+
+
+app.directive('hcLineChart', function() {
+    return {
+        restrict: 'E',
+        template: '<div></div>',
+        scope: {
+            options: '='
+        },
+        link: function(scope, element) {
+            Highcharts.chart(element[0], scope.options);
+        }
+    };
+});
+
+
+app.directive('hcColumnChart', function() {
+    return {
+        restrict: 'E',
+        template: '<div></div>',
+        scope: {
+            title: '@',
+            data: '='
+        },
+        link: function(scope, element) {
+            Highcharts.chart(element[0], {
+                chart: {
+                    type: 'column',
+                    width: $('hc-column-chart').parent().width() - 30
+                },
+
+                title: {
+                    text: 'Total fruit consumtion, grouped by gender'
+                },
+
+                xAxis: {
+                    categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                },
+
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    title: {
+                        text: 'Number of fruits'
+                    }
+                },
+
+                tooltip: {
+                    formatter: function() {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            'Total: ' + this.point.stackTotal;
+                    }
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+                series: [{
+                    name: 'John',
+                    data: [5, 3, 4, 7, 2],
+                    stack: 'male'
+                }, {
+                    name: 'Joe',
+                    data: [3, 4, 4, 2, 5],
+                    stack: 'male'
+                }, {
+                    name: 'Jane',
+                    data: [2, 5, 6, 2, 1],
+                    stack: 'female'
+                }, {
+                    name: 'Janet',
+                    data: [3, 0, 4, 4, 3],
+                    stack: 'female'
+                }]
+            });
+        }
+    };
+});
+
+
+app.directive('hcPieChart', function() {
+    return {
+        restrict: 'E',
+        template: '<div></div>',
+        scope: {
+            title: '@',
+            data: '='
+        },
+        link: function(scope, element) {
+            Highcharts.chart(element[0], {
+                chart: {
+                    type: 'pie',
+                    width: 400
+                },
+                title: {
+                    text: scope.title
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+
+                        innerSize: 180,
+                        depth: 20,
+                        showInLegend: true,
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    data: scope.data
+                }]
+            });
+        }
+    };
+});
+
+app.controller('myController', function($scope) {
+
+    // Sample options for first chart
+    $scope.chartOptions = {
+        title: {
+            text: 'Temperature data'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+        credits: {
+            enabled: false
+        },
+
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: 2010
+            }
+        },
+
+        series: [{
+            name: 'Installation',
+            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+        }, {
+            name: 'Manufacturing',
+            data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+        }, {
+            name: 'Sales & Distribution',
+            data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+        }, {
+            name: 'Project Development',
+            data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+        }, {
+            name: 'Other',
+            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+        }]
+    };
+
+    // Sample data for pie chart
+    $scope.pieData = [{
+        name: "Zona 01",
+        y: 10
+    }, {
+        name: "Zona 02",
+        y: 2
+            /* sliced: true,
+            selected: true */
+    }, {
+        name: "Zona 03",
+        y: 15
+    }, {
+        name: "Zona 04",
+        y: 13.5
+    }];
+});
+
 app.controller('classCtrl', function($scope, $http, $timeout) {
     $scope.menuItems = [{
             "href": "#!chart",
             "text": "Analytics",
-            "logoLocation": "../assets/analityc.png"
+            "logoLocation": "assets/analityc.png"
         },
         {
             "href": "#!news",
             "text": "News",
-            "logoLocation": "../assets/newspaper-o.png"
+            "logoLocation": "assets/newspaper-o.png"
         },
         {
             "href": "#!news",
             "text": "Board Brief",
-            "logoLocation": "../assets/board-brief.png"
+            "logoLocation": "assets/board-brief.png"
         },
         {
             "href": "#!news",
             "text": "Briefcase",
-            "logoLocation": "../assets/briefcase.png"
+            "logoLocation": "assets/briefcase.png"
         }
     ];
 
@@ -156,91 +344,91 @@ app.controller('newsController', function($scope) {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
 
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
 
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
@@ -254,35 +442,35 @@ app.controller('newsController', function($scope) {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }, {
             "title": "Chain Store Age",
             "date": "Feb 22, 2016",
             "caption": "Billabong taps NetSuite to power omnichannel strategy",
-            "newsImg": "../assets/list-box-im1.png",
+            "newsImg": "assets/list-box-im1.png",
             "desc": "Marianne WilsonNetSuite Inc., a provider of cloud-based financials, ERP and and omnichannel software suites, said that boardsports retailer Billabong International Ltd. selected NetSuite...",
             "thumbs": "132"
         }
